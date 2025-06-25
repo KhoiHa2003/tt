@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Công chúa thi tốt</title>
+    <style>
+      body {
+        background-color: #000;
+        color: #fff;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+      }
+
+      .raining-text {
+        position: absolute;
+        top: -50px;
+        user-select: none;
+        pointer-events: none;
+        animation-name: fall;
+        animation-timing-function: linear;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(110vh);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const body = document.body;
+        const words = [
+          "công chúa xinh gái",
+          "công chúa thi tốt",
+          "chị Diệp cố lên",
+          "công chúa đỗ nv1",
+          "cha zô",
+          "công chúa cố lên",
+          "chị Diệp thi tốt",
+        ];
+
+        const screenWidth = window.innerWidth;
+
+        function createRainingText() {
+          const textElement = document.createElement("div");
+          textElement.classList.add("raining-text");
+
+          textElement.innerText =
+            words[Math.floor(Math.random() * words.length)];
+          textElement.style.left = Math.random() * 100 + "vw";
+
+          // --- THAY ĐỔI DUY NHẤT Ở ĐÂY ---
+          // Giảm các giá trị cho màn hình điện thoại để chữ nhỏ hơn nữa
+          const baseSize = screenWidth < 500 ? 5 : 10; // Giảm từ 6 xuống 5
+          const randomRange = screenWidth < 500 ? 8 : 14; // Giảm từ 10 xuống 8
+          const randomSize = Math.random() * randomRange + baseSize;
+
+          textElement.style.fontSize = randomSize + "px";
+
+          const fallDuration = Math.random() * 4 + 4;
+          textElement.style.animationDuration = fallDuration + "s";
+
+          textElement.style.opacity = Math.random() * 0.5 + 0.3;
+
+          body.appendChild(textElement);
+
+          setTimeout(() => {
+            textElement.remove();
+          }, fallDuration * 1000);
+        }
+
+        setInterval(createRainingText, 100);
+        setTimeout(() => {
+          window.location.href = "heart.html";
+        }, 10000);
+      });
+    </script>
+  </body>
+</html>
